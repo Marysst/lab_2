@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import patch
 from io import StringIO
+from sys import stdout
 from another_implementation import encoder, function_correct, function_incorrect, create_translation_table
 
 class TestAnotherImplementation(unittest.TestCase):
@@ -21,7 +22,7 @@ class TestAnotherImplementation(unittest.TestCase):
         # Act
         translation_table = create_translation_table()
         result = encoder(input_text, translation_table)
-        sys.stdout.write(f'Encoded text is: {result}\n')
+        stdout.write(f'Encoded text is: {result}\n')
     
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
@@ -35,7 +36,7 @@ class TestAnotherImplementation(unittest.TestCase):
         # Act
         translation_table = create_translation_table()
         result = encoder(input_text, translation_table)
-        sys.stdout.write(f'Encoded text is: {result}\n')
+        stdout.write(f'Encoded text is: {result}\n')
     
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
@@ -49,7 +50,7 @@ class TestAnotherImplementation(unittest.TestCase):
         # Act
         translation_table = create_translation_table()
         result = encoder(input_text, translation_table)
-        sys.stdout.write(f'Encoded text is: {result}\n')
+        stdout.write(f'Encoded text is: {result}\n')
     
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
