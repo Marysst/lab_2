@@ -17,11 +17,11 @@ class TestAnotherImplementation(unittest.TestCase):
         # Arrange
         input_text = "hello world"
         expected_output = "Encoded text is: uryyb jbeyq\n"
-        
+    
         # Act
         translation_table = create_translation_table()
-        with patch('sys.stdin', StringIO(input_text)):
-            encoder(input_text, translation_table)
+        result = encoder(input_text, translation_table)
+        stdout.write(f'Encoded text is: {result}\n')
     
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
@@ -31,28 +31,41 @@ class TestAnotherImplementation(unittest.TestCase):
         # Arrange
         input_text = "hello, world!"
         expected_output = "Encoded text is: uryyb, jbeyq!\n"
-        
+    
         # Act
         translation_table = create_translation_table()
-        with patch('sys.stdin', StringIO(input_text)):
-            encoder(input_text, translation_table)
+        result = encoder(input_text, translation_table)
+        stdout.write(f'Encoded text is: {result}\n')
     
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
-
+        
     @patch('sys.stdout', new_callable=StringIO)
     def test_encoder_output_empty_string(self, mock_stdout):
         # Arrange
         input_text = ""
         expected_output = "Encoded text is: \n"
-        
+    
         # Act
         translation_table = create_translation_table()
-        with patch('sys.stdin', StringIO(input_text)):
-            encoder(input_text, translation_table)
-
+        result = encoder(input_text, translation_table)
+        stdout.write(f'Encoded text is: {result}\n')
+    
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    def test_encoder_with_invalid_alphabet(self):
+        # Arrange
+        input_text = "hello фыЪ汉字"
+        expected_error = 'String must contain only Latin alphabet characters\n'
+
+        # Act & Assert
+        with patch('sys.stdin', StringIO(input_text)):
+            with patch('sys.stderr', new_callable=StringIO) as mock_stderr:
+                self.assertRaises(ValueError, encoder)
+
+                # Assert
+                self.assertEqual(mock_stderr.getvalue(), expected_error)
 
     def test_function_correct(self):
         # Arrange & Act
