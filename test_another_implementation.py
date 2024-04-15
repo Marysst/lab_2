@@ -17,11 +17,12 @@ class TestAnotherImplementation(unittest.TestCase):
         # Arrange
         input_text = "hello world"
         expected_output = "Encoded text is: uryyb jbeyq\n"
-
+        
         # Act
+        translation_table = create_translation_table()
         with patch('sys.stdin', StringIO(input_text)):
-            encoder()
-
+            encoder(input_text, translation_table)
+    
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
