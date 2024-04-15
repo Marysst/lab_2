@@ -13,6 +13,18 @@ class TestAnotherImplementation(unittest.TestCase):
         # Assert
         self.assertIsNotNone(translation_table)
 
+    def test_encoder_simple_string(self):
+        # Arrange
+        translation_table = create_translation_table()
+        input_text = "Hello World!"
+        expected_output = "Uryyb Jbeyq!"
+
+        # Act
+        encoded_text = encoder(input_text, translation_table)
+
+        # Assert
+        self.assertEqual(encoded_text, expected_output)
+
     def test_function_correct(self):
         # Arrange & Act
         with self.assertRaises(SystemExit) as cm:
