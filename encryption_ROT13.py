@@ -15,10 +15,9 @@ def encoder(text: str) -> str:
             raise ValueError('String must contain only Latin alphabet, digits and special characters')
     return encoded
 
+def function_correct():
+    exit(0)
+
 if __name__ == '__main__':
-    try:
-        stdout.write(f'Encoded text is: {encoder(stdin.readline())}\n')
-    except:
-        exit(1)
-    else:
-        exit(0)
+    stdout.write(f'Encoded text is: {encoder(stdin.readline())}\n')
+    function_correct()
