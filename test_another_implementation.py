@@ -62,21 +62,23 @@ class TestAnotherImplementation(unittest.TestCase):
     def test_encoder_with_stdin_input(self):
         # Arrange
         translation_table = create_translation_table()
-
+    
         # Act
-        encoder(input(), translation_table)
-
+        with patch('sys.stderr', new_callable=StringIO) as mock_stderr:
+            encoder(input(), translation_table)
+    
         # Assert
-        self.assertEqual(sys.stderr.getvalue(), '')  
+        self.assertEqual(mock_stderr.getvalue(), '')
         
     @patch('sys.stdin', StringIO("123\n"))
     def test_encoder_error_handling(self):
         # Arrange
         translation_table = create_translation_table()
-
+        input_text = "123"  # Встановлюємо фіктивний ввід
+    
         # Act & Assert
         with self.assertRaises(ValueError):
-            encoder(input(), translation_table)
+            encoder(input_text, translation_table)
 
     def test_function_correct(self):
         # Arrange & Act
