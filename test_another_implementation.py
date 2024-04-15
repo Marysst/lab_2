@@ -1,7 +1,6 @@
-import unittest
+import unittest, sys, time
 from unittest.mock import patch
 from io import StringIO
-import sys, pytest
 from another_implementation import encoder, function_correct, function_incorrect, create_translation_table
 
 class TestAnotherImplementation(unittest.TestCase):
@@ -81,8 +80,12 @@ class TestAnotherImplementation(unittest.TestCase):
             encoder(input_text, translation_table)
 
     def test_encoder_performance(self):
-        result = pytest.benchmark(encoder, "A" * 10**6, create_translation_table())
-        assert result
+        start_time = time.time()
+        translation_table = create_translation_table()
+        encoded_text = encoder("A" * 10**6, translation_table)
+        end_time = time.time()
+        execution_time = end_time - start_time
+        self.assertTrue(execution_time < 1.0)
 
     def test_function_correct(self):
         # Arrange & Act
