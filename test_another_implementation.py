@@ -58,6 +58,18 @@ class TestAnotherImplementation(unittest.TestCase):
         with self.assertRaises(ValueError):
             encoder(input_text, translation_table)
 
+    @patch('sys.stderr', new_callable=StringIO)
+    def test_encoder_with_stdin_input(self, mock_stderr):
+        # Arrange
+        translation_table = create_translation_table()
+
+        # Act
+        with patch('sys.stdin', StringIO("123\n")):
+            encoder(input(), translation_table)
+
+        # Assert
+        self.assertEqual(mock_stderr.getvalue(), '')
+
     def test_function_correct(self):
         # Arrange & Act
         with self.assertRaises(SystemExit) as cm:
