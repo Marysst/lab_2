@@ -49,6 +49,15 @@ class TestAnotherImplementation(unittest.TestCase):
         # Assert
         self.assertEqual(encoded_text, expected_output)
 
+    def test_encoder_non_latin_characters(self):
+        # Arrange
+        translation_table = create_translation_table()
+        input_text = "Привіт, світ!"
+    
+        # Act & Assert
+        with self.assertRaises(ValueError):
+            encoder(input_text, translation_table)
+
     def test_function_correct(self):
         # Arrange & Act
         with self.assertRaises(SystemExit) as cm:
