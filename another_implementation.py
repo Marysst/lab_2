@@ -23,12 +23,12 @@ if __name__ == '__main__':
 
         text = stdin.readline()
         
-            if all(char.isascii() for char in text):
-                stdout.write(f'Encoded text is: {encoder(text, translation_table)\n')
-                function_correct()
-            else:
-                stderr.write('String must contain only Latin alphabet characters\n')
-                function_incorrect()
+        if all(char.isascii() for char in text):
+            stdout.write(f'Encoded text is: {encoder(text, translation_table)\n')
+            function_correct()
+        else:
+            stderr.write('String must contain only Latin alphabet characters\n')
+            function_incorrect()
 
     except:
         function_incorrect()
