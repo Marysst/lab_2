@@ -1,18 +1,18 @@
-from unittest import TestCase
+import unittest
 from unittest.mock import patch
 from io import StringIO
-import sys
 from another_implementation import encoder, function_correct, function_incorrect, create_translation_table
 
-class TestAnotherImplementation(TestCase):
+class TestAnotherImplementation(unittest.TestCase):
     @patch('sys.stdout', new_callable=StringIO)
-    def test_create_translation_table(self):
+    def test_create_translation_table(self, mock_stdout):
         # Act
         translation_table = create_translation_table()
 
         # Assert
         self.assertIsNotNone(translation_table)
 
+    @patch('sys.stdout', new_callable=StringIO)
     def test_encoder_output(self, mock_stdout):
         # Arrange
         input_text = "hello world"
