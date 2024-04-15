@@ -70,7 +70,7 @@ class TestAnotherImplementation(unittest.TestCase):
         # Assert
         self.assertEqual(mock_stderr.getvalue(), '')
         
-    @patch('sys.stdin', StringIO("123\n"))
+    @patch('sys.stdin', StringIO("Привіт\n"))
     def test_encoder_error_handling(self):
         # Arrange
         translation_table = create_translation_table()
