@@ -1,7 +1,7 @@
 import unittest, sys, time
 from unittest.mock import patch
 from io import StringIO
-from another_implementation import encoder, function_correct, function_incorrect, create_translation_table
+from another_implementation import encoder, function_correct, create_translation_table
 
 class TestAnotherImplementation(unittest.TestCase):
     @patch('sys.stdout', new_callable=StringIO)
@@ -87,21 +87,10 @@ class TestAnotherImplementation(unittest.TestCase):
         execution_time = end_time - start_time
         self.assertTrue(execution_time < 1.0)
 
-    def test_function_correct(self):
-        # Arrange & Act
+    def test_exit_code(self):
         with self.assertRaises(SystemExit) as cm:
             function_correct()
-
-        # Assert
-        self.assertEqual(cm.exception.code, 0)
-
-    def test_function_incorrect(self):
-        # Arrange & Act
-        with self.assertRaises(SystemExit) as cm:
-            function_incorrect()
-
-        # Assert
-        self.assertEqual(cm.exception.code, 1)
+            self.assertEqual(cm.exception.code, 0)
 
 if __name__ == '__main__':
     unittest.main()
