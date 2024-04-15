@@ -81,7 +81,7 @@ class TestAnotherImplementation(unittest.TestCase):
             encoder(input_text, translation_table)
 
     def test_encoder_performance(self):
-        result = pytest_benchmark(encoder, "A" * 10**6, create_translation_table())
+        result = pytest.benchmark(encoder, "A" * 10**6, create_translation_table())
         assert result
 
     def test_function_correct(self):
