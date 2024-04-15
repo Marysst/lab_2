@@ -63,12 +63,12 @@ class TestEncoder(TestCase):
 
     def test_stdin_invalid_input(self) -> None:
         # Arrange
-        input_command = 'echo hello фыЪ汉字'
+        input_text = 'hello фыЪ汉字'
         expected_output = 'String must contain only Latin alphabet, digits and special characters\n'
-        
+    
         # Act
-        result = subprocess.run([f'{input_command} | python3 encryption_ROT13.py'], shell=True, stderr=subprocess.PIPE)
-        
+        result = subprocess.run(['python3', 'encryption_ROT13.py'], input=input_text.encode(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    
         # Assert
         self.assertEqual(expected_output, result.stderr.decode('utf-8'))
 
