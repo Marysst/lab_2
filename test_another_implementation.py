@@ -13,7 +13,7 @@ class TestAnotherImplementation(unittest.TestCase):
         self.assertIsNotNone(translation_table)
 
     @patch('sys.stdout', new_callable=StringIO)
-    def test_encoder_output(self, mock_stdout):
+    def test_encoder_simple_output(self, mock_stdout):
         # Arrange
         input_text = "hello world"
         expected_output = "Encoded text is: uryyb jbeyq\n"
@@ -23,6 +23,34 @@ class TestAnotherImplementation(unittest.TestCase):
         with patch('sys.stdin', StringIO(input_text)):
             encoder(input_text, translation_table)
     
+        # Assert
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_encoder_output_special_characters(self, mock_stdout):
+        # Arrange
+        input_text = "hello, world!"
+        expected_output = "Encoded text is: uryyb, jbeyq!\n"
+        
+        # Act
+        translation_table = create_translation_table()
+        with patch('sys.stdin', StringIO(input_text)):
+            encoder(input_text, translation_table)
+    
+        # Assert
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_encoder_output_empty_string(self, mock_stdout):
+        # Arrange
+        input_text = ""
+        expected_output = "Encoded text is: \n"
+        
+        # Act
+        translation_table = create_translation_table()
+        with patch('sys.stdin', StringIO(input_text)):
+            encoder(input_text, translation_table)
+
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
