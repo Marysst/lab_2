@@ -74,7 +74,7 @@ class TestAnotherImplementation(unittest.TestCase):
     def test_encoder_error_handling(self):
         # Arrange
         translation_table = create_translation_table()
-        input_text = "123"  # Встановлюємо фіктивний ввід
+        input_text = "Привіт"
     
         # Act & Assert
         with self.assertRaises(ValueError):
