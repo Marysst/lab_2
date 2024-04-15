@@ -1,8 +1,7 @@
 import unittest
 from unittest.mock import patch
 from io import StringIO
-import sys
-from pytest import benchmark
+import sys, pytest
 from another_implementation import encoder, function_correct, function_incorrect, create_translation_table
 
 class TestAnotherImplementation(unittest.TestCase):
@@ -81,13 +80,8 @@ class TestAnotherImplementation(unittest.TestCase):
         with self.assertRaises(ValueError):
             encoder(input_text, translation_table)
 
-    @pytest.fixture
-    def large_input():
-        return "A" * 10**6
-    
-    def test_encoder_performance(benchmark, large_input):
-        translation_table = create_translation_table()
-        result = benchmark(encoder, large_input, translation_table)
+    def test_encoder_performance(self, pytest_benchmark):
+        result = pytest_benchmark(encoder, "A" * 10**6, create_translation_table())
         assert result
 
     def test_function_correct(self):
