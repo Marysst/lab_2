@@ -1,5 +1,5 @@
 from unittest import TestCase
-from encryption_ROT13 import encoder
+from encryption_ROT13 import encoder, function_correct
 import subprocess
 
 subprocess.run(['icacls encryption_ROT13.py /grant Everyone:F'], shell=True)
