@@ -58,7 +58,7 @@ class TestAnotherImplementation(unittest.TestCase):
         with self.assertRaises(ValueError):
             encoder(input_text, translation_table)
 
-     @patch('sys.stdin', StringIO("123\n"))
+    @patch('sys.stdin', StringIO("123\n"))
     def test_encoder_with_stdin_input(self):
         # Arrange
         translation_table = create_translation_table()
