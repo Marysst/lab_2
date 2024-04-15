@@ -80,7 +80,7 @@ class TestAnotherImplementation(unittest.TestCase):
         with self.assertRaises(ValueError):
             encoder(input_text, translation_table)
 
-    def test_encoder_performance(self, pytest_benchmark):
+    def test_encoder_performance(self):
         result = pytest_benchmark(encoder, "A" * 10**6, create_translation_table())
         assert result
 
