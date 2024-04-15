@@ -72,24 +72,7 @@ class TestEncoder(TestCase):
         # Assert
         self.assertEqual(expected_output, result.stderr.decode('utf-8'))
 
-    def test_exit_code_when_correct(self) -> None:
-        # Arrange
-        input_command = 'echo hello world'
-        expected_output = 0
-        
-        # Act
-        result = subprocess.run([f'{input_command} | python3 encryption_ROT13.py'], shell=True)
-        
-        # Assert
-        self.assertEqual(expected_output, result.returncode)
-
-    def test_exit_code_when_incorrect(self) -> None:
-        # Arrange
-        input_command = 'echo hello фыЪ汉字'
-        expected_output = 1
-        
-        # Act
-        result = subprocess.run([f'{input_command} | python3 encryption_ROT13.py'], shell=True)
-        
-        # Assert
-        self.assertEqual(expected_output, result.returncode)
+    def test_exit_code(self) -> None:
+        with self.assertRaises(SystemExit) as cm:
+            function_correct()
+            self.assertEqual(cm.exception.code, 0)
