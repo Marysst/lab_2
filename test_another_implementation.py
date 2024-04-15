@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 from io import StringIO
-from sys import stdout, stdin, stderr
+import sys
 from another_implementation import encoder, function_correct, function_incorrect, create_translation_table
 
 class TestAnotherImplementation(unittest.TestCase):
