@@ -63,7 +63,7 @@ class TestAnotherImplementation(unittest.TestCase):
         # Act & Assert
         with patch('sys.stdin', StringIO(input_text)):
             with patch('sys.stderr', new_callable=StringIO) as mock_stderr:
-                self.assertRaises(ValueError, encoder)
+                self.assertRaises(ValueError, encoder, input_text, create_translation_table())
 
                 # Assert
                 self.assertEqual(mock_stderr.getvalue(), expected_error)
