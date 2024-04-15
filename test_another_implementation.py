@@ -25,6 +25,30 @@ class TestAnotherImplementation(unittest.TestCase):
         # Assert
         self.assertEqual(encoded_text, expected_output)
 
+    def test_encoder_digits(self):
+        # Arrange
+        translation_table = create_translation_table()
+        input_text = "12345"
+        expected_output = "12345"
+
+        # Act
+        encoded_text = encoder(input_text, translation_table)
+
+        # Assert
+        self.assertEqual(encoded_text, expected_output)
+
+    def test_encoder_special_characters(self):
+        # Arrange
+        translation_table = create_translation_table()
+        input_text = "!@#$%^&*()"
+        expected_output = "!@#$%^&*()"
+
+        # Act
+        encoded_text = encoder(input_text, translation_table)
+
+        # Assert
+        self.assertEqual(encoded_text, expected_output)
+
     def test_function_correct(self):
         # Arrange & Act
         with self.assertRaises(SystemExit) as cm:
