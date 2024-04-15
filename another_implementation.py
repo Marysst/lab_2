@@ -19,8 +19,10 @@ def function_correct():
 
 if __name__ == '__main__':
     try:
-        stdout.write(f'Encoded text is: {encoder(stdin.readline())}\n')
+        translation_table = create_translation_table()
+
+        stdout.write(f'Encoded text is: {encoder(stdin.readline(), translation_table)}\n')
+        function_correct()
+
     except:
         function_incorrect()
-    else:
-        function_correct()
