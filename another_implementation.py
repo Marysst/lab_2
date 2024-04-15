@@ -9,7 +9,11 @@ def create_translation_table():
     )
 
 def encoder(text: str, translation_table) -> str:
-    return text.translate(translation_table)
+    if all(char.isascii() for char in text):
+        return text.translate(translation_table)
+    else:
+        stderr.write('String must contain only Latin alphabet characters\n')
+        raise ValueError('String must contain only Latin alphabet, digits and special characters')
 
 def function_incorrect():
     exit(1)
@@ -23,12 +27,9 @@ if __name__ == '__main__':
 
         text = stdin.readline()
         
-        if all(char.isascii() for char in text):
-            stdout.write(f'Encoded text is: {encoder(text, translation_table)}\n')
-            function_correct()
-        else:
-            stderr.write('String must contain only Latin alphabet characters\n')
-            function_incorrect()
+        encoder(text, translation_table)
+        
+        function_correct()
 
     except:
         function_incorrect()
