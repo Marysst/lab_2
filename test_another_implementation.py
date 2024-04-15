@@ -21,7 +21,7 @@ class TestAnotherImplementation(unittest.TestCase):
         # Act
         translation_table = create_translation_table()
         result = encoder(input_text, translation_table)
-        stdout.write(f'Encoded text is: {result}\n')
+        sys.stdout.write(f'Encoded text is: {result}\n')
     
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
@@ -35,7 +35,7 @@ class TestAnotherImplementation(unittest.TestCase):
         # Act
         translation_table = create_translation_table()
         result = encoder(input_text, translation_table)
-        stdout.write(f'Encoded text is: {result}\n')
+        sys.stdout.write(f'Encoded text is: {result}\n')
     
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
@@ -49,7 +49,7 @@ class TestAnotherImplementation(unittest.TestCase):
         # Act
         translation_table = create_translation_table()
         result = encoder(input_text, translation_table)
-        stdout.write(f'Encoded text is: {result}\n')
+        sys.stdout.write(f'Encoded text is: {result}\n')
     
         # Assert
         self.assertEqual(mock_stdout.getvalue(), expected_output)
