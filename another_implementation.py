@@ -15,21 +15,13 @@ def encoder(text: str, translation_table) -> str:
         stderr.write('String must contain only Latin alphabet characters\n')
         raise ValueError('String must contain only Latin alphabet, digits and special characters')
 
-def function_incorrect():
-    exit(1)
-
 def function_correct():
     exit(0)
 
 if __name__ == '__main__':
-    try:
-        translation_table = create_translation_table()
-
-        text = stdin.readline()
+    translation_table = create_translation_table()
+    text = stdin.readline()
         
-        encoder(text, translation_table)
+    encoder(text, translation_table)
         
-        function_correct()
-
-    except:
-        function_incorrect()
+    function_correct()
