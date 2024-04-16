@@ -17,4 +17,4 @@ def encoder(text: str) -> str:
     exit(0)
 
 if __name__ == '__main__':
-    encoder(stdin.readline().rstrip())
+    stdout.write(f'Encoded text is: {encoder(stdin.readline())}\n')
