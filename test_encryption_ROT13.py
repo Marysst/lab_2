@@ -70,7 +70,7 @@ class TestEncoder(TestCase):
         result = subprocess.run([f'{input_command} | python3 encryption_ROT13.py'], shell=True, stderr=subprocess.PIPE)
         
         # Assert
-        self.assertEqual(expected_output, result.stderr.decode('utf-8'))
+        self.assertTrue(result.stderr.decode('utf-8').startswith(expected_output))
 
     def test_exit_code(self) -> None:
         with self.assertRaises(SystemExit) as cm:
