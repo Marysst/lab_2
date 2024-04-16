@@ -6,7 +6,7 @@ from io import StringIO
 
 subprocess.run(['icacls encryption_ROT13.py /grant Everyone:F'], shell=True)
 
-class TestEncoder(TestCase):
+class TestEncoder(unittest.TestCase):
     def test_simple_string(self) -> None:
         # Arrange
         input_string = 'hello world'
