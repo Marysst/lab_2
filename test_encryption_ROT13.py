@@ -45,25 +45,25 @@ class TestEncoder(TestCase):
         
         # Assert
         self.assertEqual(expected_output, encoded_string)
-
+    
     def test_encoder_with_correct_input(self):
         # Arrange
         input_text = "hello world"
-    
+        
         # Act & Assert
         with self.assertRaises(SystemExit) as cm:
-                encoder(input_text)
-    
+            encoder(input_text)
+        
             # Assert
             self.assertEqual(cm.exception.code, 0)
-
+    
     def test_encoder_with_incorrect_input(self):
         # Arrange
         input_text = "hello фыЪ汉字"
         
         # Act & Assert
         with self.assertRaises(SystemExit) as cm:
-                    encoder(input_text)
+                encoder(input_text)
     
                 # Assert
                 self.assertEqual(cm.exception.code, 1)
