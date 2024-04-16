@@ -5,7 +5,7 @@ class TestEncoder(TestCase):
     def test_simple_string(self) -> None:
         # Arrange
         input_string = 'hello world'
-        expected_output = 'uryyb jbeyq'
+        expected_output = 'Encoded text is: uryyb jbeyq'
         
         # Act
         encoded_string = encoder(input_string)
