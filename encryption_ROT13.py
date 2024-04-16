@@ -18,7 +18,7 @@ def encoder(text: str) -> str:
 def function_correct():
     exit(0)
 
-def function_correct():
+def function_incorrect():
     exit(1)
 
 if __name__ == '__main__':
