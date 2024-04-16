@@ -1,5 +1,5 @@
 from unittest import TestCase
-from encryption_ROT13 import encoder, function_correct
+from encryption_ROT13 import encoder
 
 class TestEncoder(TestCase):
     def test_simple_string(self) -> None:
