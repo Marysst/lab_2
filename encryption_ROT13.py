@@ -11,8 +11,8 @@ def encoder(text: str) -> str:
             else:
                 encoded += char
         else:
-            function_incorrect()
             stderr.write('String must contain only Latin alphabet, digits and special characters\n')
+            function_incorrect()
             raise ValueError('String must contain only Latin alphabet, digits and special characters')
     function_correct()
     return encoded
