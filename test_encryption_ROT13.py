@@ -52,17 +52,14 @@ class TestEncoder(TestCase):
         # Assert
         self.assertEqual(expected_output, encoded_string)
 
-        @patch('sys.stdin', StringIO("123\n"))
-        def test_encoder_with_stdin_input(self):
-            # Arrange
-            translation_table = create_translation_table()
-        
-            # Act
-            with patch('sys.stderr', new_callable=StringIO) as mock_stderr:
-                encoder(input(), translation_table)
-        
-            # Assert
-            self.assertEqual(mock_stderr.getvalue(), '')
+    @patch('sys.stdin', StringIO("123\n"))
+    def test_encoder_with_stdin_input(self):
+        # Arrange & Act
+        with patch('sys.stderr', new_callable=StringIO) as mock_stderr:
+            encoder(input())
+            
+        # Assert
+        self.assertEqual(mock_stderr.getvalue(), '')
 
     def test_stdin_invalid_input(self) -> None:
         # Arrange
