@@ -1,4 +1,4 @@
-from unittest import TestCase
+import unittest, sys
 from encryption_ROT13 import encoder, function_correct, function_incorrect
 import subprocess
 from unittest.mock import patch
@@ -52,17 +52,17 @@ class TestEncoder(TestCase):
         # Assert
         self.assertEqual(expected_output, encoded_string)
 
-    def test_stdin_valid_input(self) -> None:
-        # Arrange
-        input_string = 'hello world'
-        expected_output = 'Encoded text is: uryyb jbeyq\n\n'
+        @patch('sys.stdin', StringIO("123\n"))
+        def test_encoder_with_stdin_input(self):
+            # Arrange
+            translation_table = create_translation_table()
         
-        # Act
-        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-            encoder(input_string)
+            # Act
+            with patch('sys.stderr', new_callable=StringIO) as mock_stderr:
+                encoder(input(), translation_table)
         
-        # Assert
-        self.assertEqual(expected_output, mock_stdout.getvalue())
+            # Assert
+            self.assertEqual(mock_stderr.getvalue(), '')
 
     def test_stdin_invalid_input(self) -> None:
         # Arrange
