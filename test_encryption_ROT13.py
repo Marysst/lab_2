@@ -80,4 +80,4 @@ class TestEncoder(TestCase):
     def test_function_incorrect_exit_code(self) -> None:
         with self.assertRaises(SystemExit) as cm:
             function_incorrect()
-            self.assertEqual(cm.exception.code, 0)
+            self.assertEqual(cm.exception.code, 1)
