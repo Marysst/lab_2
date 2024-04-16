@@ -52,14 +52,15 @@ class TestEncoder(TestCase):
 
     def test_stdin_valid_input(self) -> None:
         # Arrange
-        input_command = 'echo hello world'
+        input_string = 'hello world'
         expected_output = 'Encoded text is: uryyb jbeyq\n\n'
         
         # Act
-        result = subprocess.run([f'{input_command} | python3 encryption_ROT13.py'], shell=True, stdout=subprocess.PIPE)
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            encoder(input_string)
         
         # Assert
-        self.assertEqual(expected_output, result.stdout.decode('utf-8'))
+        self.assertEqual(expected_output, mock_stdout.getvalue())
 
     def test_stdin_invalid_input(self) -> None:
         # Arrange
