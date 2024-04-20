@@ -61,16 +61,14 @@ class TestEncoder(unittest.TestCase):
         # Assert
         self.assertEqual(mock_stderr.getvalue(), '')
 
-    def test_stdin_invalid_input(self) -> None:
+    @patch('sys.stdin', StringIO("Привіт\n"))
+    def test_encoder_error_handling(self):
         # Arrange
-        input_text = 'hello фыЪ汉字'
-        expected_output = 'String must contain only Latin alphabet, digits and special characters\n'
+        input_text = "Привіт"
     
-        # Act
-        result = subprocess.run(['python3', 'encryption_ROT13.py'], input=input_text.encode(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-        # Assert
-        self.assertTrue(result.stderr.decode('utf-8').startswith(expected_output))
+        # Act & Assert
+        with self.assertRaises(ValueError):
+            encoder(input_text)
 
     def test_function_correct_exit_code(self) -> None:
         with self.assertRaises(SystemExit) as cm:
