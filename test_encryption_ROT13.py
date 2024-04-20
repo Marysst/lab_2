@@ -1,6 +1,5 @@
 import unittest, sys
 from encryption_ROT13 import encoder, function_correct, function_incorrect
-import subprocess
 from unittest.mock import patch
 from io import StringIO
 
