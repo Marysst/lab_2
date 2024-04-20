@@ -18,6 +18,13 @@ def encoder(text: str) -> str:
 def function_correct():
     exit(0)
 
+def function_incorrect():
+    exit(1)
+
 if __name__ == '__main__':
-    stdout.write(f'Encoded text is: {encoder(stdin.readline())}\n')
-    function_correct()
+    try:
+        stdout.write(f'Encoded text is: {encoder(stdin.readline())}\n')
+    except:
+        function_incorrect()
+    else:
+        function_correct()
