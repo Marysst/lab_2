@@ -18,10 +18,18 @@ def encoder(text: str, translation_table) -> str:
 def function_correct():
     exit(0)
 
+def function_incorrect():
+    exit(1)
+
 if __name__ == '__main__':
-    translation_table = create_translation_table()
-    text = stdin.readline()
-        
-    encoder(text, translation_table)
-        
-    function_correct()
+    try:
+        translation_table = create_translation_table()
+        text = stdin.readline().strip()
+
+        encoded_text = encoder(text, translation_table) 
+        stdout.write(f'Encoded text is: {encoded_text}\n')
+    except ValueError as e:
+        stderr.write(str(e) + '\n')
+        function_incorrect()
+    else:
+        function_correct() 
